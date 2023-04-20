@@ -49,3 +49,12 @@
 			'2019-12-30'=> ['name5', 'name6', 'name7'],
 			'2019-12-31'=> ['name8', 'name9'],
 			];
+			
+	$result = [];
+	foreach($arr as $date => $elem){
+		foreach($elem as $event){
+			$result[] = ['date' => $date,
+						 'event' => $event,];
+		}
+	}
+	var_dump($result);
