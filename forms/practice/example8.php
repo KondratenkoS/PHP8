@@ -11,5 +11,6 @@
 	</form>
 <?php
 	if(!empty($_POST)){
-		echo 'В строке ' . strlen($_POST['text']) . ' символов';
+		echo 'В строке ' . strlen($_POST['text']) . ' символов,<br>' . 
+			 'В строке ' . str_word_count($_POST['text']) . ' слов.';
 	}
