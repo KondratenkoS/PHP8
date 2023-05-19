@@ -25,6 +25,15 @@
 	
 	$query = "SELECT * FROM users";
 	$result = mysqli_query($link, $query) or die(mysqli_error($link));
+	//$data = mysqli_fetch_assoc($result);
 	for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
-	var_dump($data);
+	//var_dump($data);
 	
+	foreach($data as $elem){
+		echo "<div>
+				<h2>$elem[name]</h2>
+				<p>
+					$elem[age] years, <b>$elem[salary]$</b>
+				</p>
+			  </div>";
+	}
