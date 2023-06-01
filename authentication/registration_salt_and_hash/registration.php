@@ -50,6 +50,11 @@
 		#16
 		Спросите у пользователя при регистрации еще и страну проживания. Предложите ему
 		выбрать одну из стран с помощью выпадающего списка select.
+		#16
+		Внесите изменения в регистрацию с учетом хеширования, зарегистрируйте пару новых 
+		пользователей, убедитесь, что в базу данных они добавились с хешированными паролями.
+		#17
+		Реализуйте регистрацию с соленым паролем.
 	*/
 	require_once '../connection/connection.php';
 	session_start();
@@ -112,7 +117,8 @@
 		}
 		$email = validateEmail($_POST['email']);
 		$country = $_POST['country'];
-		$pass = validatePass($_POST['pass']);
+		$salt = generateSalt(); // добавочная строка к паролю
+		$pass = md5($salt . validatePass($_POST['pass'])); // хешируем пароль
 		
 		if(!empty($name) and !empty($pass) and !empty($_POST['confirm'])){
 			
@@ -122,7 +128,7 @@
 					if($_POST['pass'] === $_POST['confirm']){
 					$registration_date = date('Y-m-d'); // дата регистрации
 					$query = "INSERT INTO auth SET registration_date = '$registration_date', name = '$name', date_birthday = '$date_birthday',
-						  email = '$email', country = '$country', pass = '$pass'";
+						  email = '$email', country = '$country', salt = '$salt', pass = '$pass'";
 					mysqli_query($link, $query);
 					$id = mysqli_insert_id($link); // получаем id последней вставленной записи
 					
@@ -177,4 +183,14 @@
 		$post = strip_tags($post);
 		$post = htmlspecialchars($post);
 		return $post;
+	}
+	
+	function generateSalt(){
+		$salt = '';
+		$saltlength = 8;
+		
+		for($i = 0; $i <= $saltlength; $i++){
+			$salt .= chr(mt_rand(33, 126));
+		}
+		return $salt;
 	}
