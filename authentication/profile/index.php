@@ -13,6 +13,10 @@
 		- ссылку на страницу авторизации.
 	*/
 	session_start();
+	if(isset($_SESSION['flash'])){
+		echo $_SESSION['flash'] . '<br>';
+		unset($_SESSION['flash']);
+	}
 	
 	if(!empty($_SESSION['auth'])){
 		echo 'Вы вошли под логином - ' . $_SESSION['login'] . '<br>';

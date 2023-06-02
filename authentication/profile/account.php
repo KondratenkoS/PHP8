@@ -21,6 +21,8 @@
 		<p><input name="date_birthday" value="<?= $data['date_birthday'] ?? '' ?>"> Введите новую дату рождения</p>
 		<p><input name="email" value="<?= $data['email'] ?? '' ?>"> Введите новый email</p>
 		<input type="submit">
+		<p><a href="changePass.php">Смена пароля</p>
+		<p><a href="delete.php">Удалить аккаунт</p>
 		<p><a href="index.php">На главную</p>
 	</form>
 	
@@ -41,5 +43,4 @@
 			$result = mysqli_query($link, $query) or die(mysqli_error($link));
 			
 			header('Location: account.php');
-			die();
 		}
