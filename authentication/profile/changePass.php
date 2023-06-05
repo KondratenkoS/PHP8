@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once '../connection/connection.php';
+	echo "Вы вошли под логином - $_SESSION[login], как $_SESSION[status]<br>";
 	
 	if(!empty($_SESSION['auth'])){
 	$id = $_SESSION['id'];

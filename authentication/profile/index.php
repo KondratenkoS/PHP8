@@ -19,10 +19,15 @@
 	}
 	
 	if(!empty($_SESSION['auth'])){
-		echo 'Вы вошли под логином - ' . $_SESSION['login'] . '<br>';
+		echo "Вы вошли под логином - $_SESSION[login], как $_SESSION[status]<br>";
 	?>
 		<p><a href="profile.php">Информация о вашем профиле</p>
 		<p><a href="users.php">Список всех пользователей</p>
+	<?php 
+		if($_SESSION['status'] === 'admin'){
+			?> <p><a href="admin.php">Страничка для администратора</p> <?php
+		}
+	?>	
 		<p><a href="1.php">Только для авторизованого пользователя</p>
 		<p><a href="2.php">Только для авторизованого пользователя</p>
 		<p><a href="3.php">Только для авторизованого пользователя</p>

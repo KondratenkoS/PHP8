@@ -96,12 +96,13 @@
 					$registration_date = date('Y-m-d'); // дата регистрации
 					$query = "INSERT INTO auth SET registration_date = '$registration_date', login = '$login', name = '$name', 
 							  surname = '$surname', patronymic = '$patronymic', date_birthday = '$date_birthday',
-						  email = '$email', pass = '$pass'";
+						  email = '$email', pass = '$pass', status = 'user'";
 					mysqli_query($link, $query);
 					$id = mysqli_insert_id($link); // получаем id последней вставленной записи
 					
 					$_SESSION['auth'] = true; // пользователь автоматически становится авторизированным после регистрации
 					$_SESSION['id'] = $id; // записываем id в сессию
+					$_SESSION['status'] = $result['status']; // записываем status в сессию
 					$_SESSION['login'] = $login;
 					
 					header('Location: index.php');

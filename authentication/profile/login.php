@@ -45,6 +45,7 @@
 				if(password_verify($pass, $dataPass)){
 					$_SESSION['auth'] = true;
 					$_SESSION['id'] = $id;
+					$_SESSION['status'] = $data['status'];
 					$_SESSION['login'] = $login;
 					header('Location: index.php');
 					die();

@@ -1,0 +1,28 @@
+#login_admin {
+	width: 100px;
+	color: red;
+	text-align: center;
+}
+
+#status_admin {
+	width: 60px;
+	color: red;
+	text-align: center;
+}
+
+#login_user {
+	width: 100px;
+	color: green;
+	text-align: center;
+}
+
+#status_user {
+	width: 60px;
+	color: green;
+	text-align: center;
+}
+
+#delete {
+	width: 170px;
+	text-align: center;
+}

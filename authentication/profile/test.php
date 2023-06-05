@@ -1,3 +1,4 @@
 <?php
-	//session_start();
-	var_dump($_GET);
+
+$debug = false;
+$debug && print('PHP and operator demo!');

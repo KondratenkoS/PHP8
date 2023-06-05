@@ -29,11 +29,11 @@
 				mysqli_query($link, $query) or die(mysqli_error($link));
 				
 				$_SESSION['auth'] = null;
-				$_SESSION['flash'] = 'Ваш аккаунт удален';
+				$_SESSION['flash'] = 'Ваш аккаунт удален.';
 				header('Location: index.php');
 				die();
 			} else {
-				echo 'Не верный пароль';
+				echo 'Не верный пароль.';
 			}
 		}
 	}
