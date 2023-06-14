@@ -1,0 +1,6 @@
+#RewriteEngine On
+#RewriteBase /
+
+#RewriteCond %{REQUEST_URI} !\.(js|css|ico|jpg|png)$
+#RewriteRule .+ php8/site_engine/bulletin_board/index.php
+
