@@ -1,4 +1,4 @@
-<?php
-echo '<pre>';
-	print_r(get_declared_interfaces());
-	echo '<pre>';
+<form method="get">
+	<textarea name="text"><?php echo $_GET['text'] ?? ''?></textarea>
+	<input type="submit">
+</form>
