@@ -1,4 +1,12 @@
-<form method="get">
-	<textarea name="text"><?php echo $_GET['text'] ?? ''?></textarea>
-	<input type="submit">
-</form>
+<?php
+	$arr = [
+            1 => ['name'=>'user1', 'age'=>'23', 'salary' => 1000],
+            2 => ['name'=>'user2', 'age'=>'24', 'salary' => 2000],
+            3 => ['name'=>'user3', 'age'=>'25', 'salary' => 3000],
+            4 => ['name'=>'user4', 'age'=>'26', 'salary' => 4000],
+            5 => ['name'=>'user5', 'age'=>'27', 'salary' => 5000],
+        ];
+		
+	$id = 1;
+	
+	print_r($arr[$id]);
