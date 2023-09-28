@@ -1,50 +1,68 @@
 <?php
 
-// abstract class Task
-// {
-//     public function printSections()
-//     {
-//         $this->printHeader();
-//         $this->printBody();
-//         $this->printFooter();
-//         $this->printCustom();
-//     }
+interface WorkerVisitor
+{
+    public function visitDeveloper(Worker $worker);
+    public function visitDesigner(Worker $worker);
+}
 
-//     private function printHeader()
-//     {
-//         printf('Header' . PHP_EOL);
-//     }
+class RecorderVisitor implements WorkerVisitor
+{
+    private array $visited = [];
 
-//     private function printBody()
-//     {
-//         printf('Body' . PHP_EOL);
-//     }
+    public function getVisited(): array
+    {
+        return $this->visited;
+    }
 
-//     private function printFooter()
-//     {
-//         printf('Footer' . PHP_EOL);
-//     }
+    public function visitDeveloper(Worker $developer)
+    {
+        $this->visited[] = $developer;
+    }
 
-//     abstract protected function printCustom();
-// }
+    public function visitDesigner(Worker $designer)
+    {
+        $this->visited[] = $designer;
+    }
+}
 
-// class DeveloperTask extends Task
-// {
-//     protected function printCustom()
-//     {
-//         printf(' for developer' . PHP_EOL);
-//     }
-// }
+interface Worker 
+{
+    public function work();
+    public function accept(WorkerVisitor $visitor);
+}
 
-// class DesignerTask extends Task
-// {
-//     protected function printCustom()
-//     {
-//         printf(' for designer' . PHP_EOL);
-//     }
-// }
+class Developer implements Worker
+{
+    public function work()
+    {
+        printf('Developer is working');
+    }
 
-// $developerTask = new DeveloperTask();
-// $designerTask  = new DesignerTask();
+    public function accept(WorkerVisitor $visitor)
+    {
+        $visitor->visitDeveloper($this);
+    }
+}
 
-// $developerTask->printSections();
+class Designer implements Worker
+{
+    public function work()
+    {
+        printf('Designer is working');
+    }
+
+    public function accept(WorkerVisitor $visitor)
+    {
+        $visitor->visitDesigner($this);
+    }
+}
+
+$visitor = new RecorderVisitor();
+$developer = new Developer();
+$designer = new Designer();
+
+$developer->accept($visitor);
+$designer->accept($visitor);
+
+var_dump($visitor->getVisited());
